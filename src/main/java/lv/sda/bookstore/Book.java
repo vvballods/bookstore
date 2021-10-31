@@ -86,14 +86,14 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", publishingYear=" + publishingYear +
-                ", pages=" + pages +
-                ", publisher='" + publisher + '\'' +
-                ", description='" + description + '\'' +
-                ", isbn='" + isbn + '\'' +
-                '}';
+        return String.join(";",
+                title,
+                author,
+                Integer.valueOf(publishingYear.getYear()).toString(),
+                Integer.valueOf(pages).toString(),
+                publisher,
+                description,
+                isbn
+        );
     }
 }
