@@ -9,8 +9,14 @@ public class Bookstore {
     public void addBook(Book book){
         bookShelf.add(book);
     }
+    public void removeBook(String isbn) {
+        bookShelf.removeIf(book -> book.getIsbn().equals(isbn));
+    }
     public void listBook(){
         bookShelf.forEach(System.out::println);
     }
 
+    public List<Book> getBookShelf() {
+        return bookShelf;
+    }
 }
