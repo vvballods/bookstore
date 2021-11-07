@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Application {
 
-    public static void main(String[] args) {
+    static Scanner scanner = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
         Bookstore bookstore = new Bookstore();
 
         while (true) {
@@ -42,5 +42,26 @@ public class Application {
 
         }
 
+    }
+
+    public static int inputNumber() {
+        while (true) {
+            System.out.println("Ievadiet skaitli: ");
+            return handleUserNumberInput(scanner.nextLine());
+        }
+    }
+
+    public static int handleUserNumberInput(String userInput) {
+        try {
+            return Integer.parseInt(userInput);
+        } catch (Exception e) {
+            throw new UserInputValidationException("pages", e);
+        }
+    }
+}
+
+class UserInputValidationException extends RuntimeException{
+    public UserInputValidationException(String field, Exception e) {
+        super("Validation error in user CLI input field: " + field, e);
     }
 }

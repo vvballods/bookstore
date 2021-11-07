@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BookstoreTest {
 
@@ -32,5 +33,20 @@ public class BookstoreTest {
         bookstore.removeBook("7890");
 
         assertEquals(0, bookstore.getBookShelf().size());
+    }
+
+    @Test
+    public void testValidUserInput() {
+        int number = Application.handleUserNumberInput("12345");
+        assertEquals(12345, number);
+    }
+
+    @Test
+    public void testInvalidUserInput() {
+        UserInputValidationException e = assertThrows(UserInputValidationException.class, () -> {
+            Application.handleUserNumberInput("abc");
+        });
+
+        assertEquals("Validation error in user CLI input field: pages", e.getMessage());
     }
 }
